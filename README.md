@@ -1,8 +1,11 @@
 # Project -2 Time Series Project
 
-1. [Enlaces ](#schema20)
+1. [Importar librerías ](#schema1)
 # a.- Analyzing Closing Price of Stocks& Volume Trading
-
+2. [Hacemos un dataframe con las datos de las compañías.](#schema2)
+3. [Obtenemos la lista de los nombres de las compañías que vamos a analizar.](#schema3)
+4. [Hacemos un gráfico con los valores de cierre.](#schema4)
+5. [Analicemos el volumen total de acciones que se negocian cada día](#schema5)
 
 
 <hr>
