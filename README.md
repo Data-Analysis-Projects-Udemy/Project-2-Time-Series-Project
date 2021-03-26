@@ -65,10 +65,10 @@ for i, company in enumerate(tech_list,1):
     plt.title(company)
     plt.savefig(f"./images/{company}")
 ~~~
-![img](./images/AAPL.png)
-![img](./images/AMZN.png)
-![img](./images/GOOG.png)
-![img](./images/MSFT.png)
+
+![img](./images/comp.png)
+
+
 
 <hr>
 
@@ -85,10 +85,7 @@ for i, company in enumerate(tech_list,1):
     plt.title(company)
     plt.savefig(f"./images/{company}_stock")
 ~~~
-![img](./images/AAPL_stock.png)
-![img](./images/AMZN_stock.png)
-![img](./images/GOOG_stock.png)
-![img](./images/MSFT_stock.png)
+![img](./images/stock.png)
 
 
 
