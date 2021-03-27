@@ -1,5 +1,5 @@
 # Project -2 Time Series Project
-
+0. [Orden de los archivos](#schema0)
 1. [Importar librerías ](#schema1)
 # a.- Análisis del precio de cierre de las acciones y del volumen de operaciones
 2. [Hacemos un dataframe con las datos de las compañías.](#schema2)
@@ -7,6 +7,22 @@
 4. [Hacemos un gráfico con los valores de cierre.](#schema4)
 5. [Analicemos el volumen total de acciones que se negocian cada día](#schema5)
 # b.- Analizamos la devoluciones diarias
+
+# c.- Análisis de la realización de multivariante
+
+# d.- Análisis de valor en riesgo
+
+13. [Análisis de valor en riesgo para Apple](#schema13)
+<hr>
+
+<a name="schema0"></a>
+
+# 0. Orden de los archivos
+
+1º Stock-Price_EDA = a
+2º Analyzing_Daily_retunrs = b
+3º Performing_Multi-Variate = c y d
+
 
 <hr>
 
@@ -171,17 +187,105 @@ df2['close'].resample('Y').mean().plot(kind = 'bar')
 ![img](./images/mean-year.png)
 
 
+<hr>
+
+<a name="schema8"></a>
+
+# 8. Creamos un dataset para cada empresa que vamos a anlizar
+~~~python
+aapl=pd.read_csv('./data/AAPL_data.csv')
+goog=pd.read_csv('./data/GOOG_data.csv')
+amzn=pd.read_csv('./data/AMZN_data.csv')
+msft=pd.read_csv('./data/MSFT_data.csv')
+~~~
+<hr>
+
+<a name="schema9"></a>
+
+# 9. Creamos un dataset con las ventas finales
+
+~~~python
+close['aapl']=aapl['close']
+close['goog']=goog['close']
+close['amzn']=amzn['close']
+close['msft']=msft['close']
+
+~~~
+![img](./images/008.png)
 
 
+<hr>
 
+<a name="schema10"></a>
 
+# 10. Hacemos un pairplot y heatmap.
+Para ver la distribución de los datos con varibles 
 
+~~~python
+sns.pairplot(data=close)
+plt.savefig("./images/close.png")
+~~~
+![img](./images/close.png)
+Dibujar y comrpobar la correlación
 
+~~~python
+sns.heatmap(close.corr(),annot=True)
+~~~
+![img](./images/corr.png)
 
+Donde podemos observar que las ventas de `amazon` y `microsoft` esta correladas con `0.96`
 
+<hr>
 
+<a name="schema11"></a>
 
+# 11. Creamos un dataset con los porcentajes de los precios diarios.
+~~~python
+data['appl_change']=((aapl['close']-aapl['open'])/aapl['close'])*100
+data['goog_change']=((goog['close']-goog['open'])/goog['close'])*100
+data['amzn_change']=((amzn['close']-amzn['open'])/amzn['close'])*100
+data['msft_change']=((msft['close']-msft['open'])/msft['close'])*100
+~~~
+![img](./images/009.png)
 
+<hr>
+
+<a name="schema12"></a>
+
+# 12. Hacemos un pairplot y heatmap.
+
+~~~python
+sns.pairplot(data = data)
+plt.savefig("./images/data.png")
+~~~
+
+![img](./images/data.png)
+
+~~~python
+sns.heatmap(data.corr(), annot = True)
+plt.savefig("./images/data_corr.png")
+~~~
+
+<hr>
+
+<a name="schema13"></a>
+
+# 13. Análisis de valor en riesgo para Apple
+~~~python
+sns.distplot(data['appl_change'])
+~~~
+![img](./images/appl_distr.png)
+
+Calculamos la desciación estandar. 
+~~~python
+data['appl_change'].std()
+data['appl_change'].quantile(0.1)
+~~~
+
+~~~python
+data.describe()
+~~~
+![img](./images/010.png)
 
 
 
