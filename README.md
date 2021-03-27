@@ -243,6 +243,7 @@ sns.heatmap(close.corr(),annot=True)
 ~~~
 ![img](./images/corr.png)
 
+
 Donde podemos observar que las ventas de `amazon` y `microsoft` esta correladas con `0.96`
 
 <hr>
