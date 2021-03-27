@@ -8,11 +8,21 @@
 5. [Analicemos el volumen total de acciones que se negocian cada día](#schema5)
 # b.- Analizamos la devoluciones diarias
 
+6. [Importamos las librerías y cargamos el data set](#schema6)
+7. [Como no tenemos el precio diario se calcula, después lo ponemos en porcentajes y los dibujamos](#schema7)
+8. [Analizar la media mensual de la columna de cierre](#schema8)
+
+
 # c.- Análisis de la realización de multivariante
+9. [Creamos un dataset para cada empresa que vamos a anlizar](#schema9)
+10. [Creamos un dataset con las ventas finales](#schema10)
+11. [Hacemos un pairplot y heatmap.](#schema11)
+
 
 # d.- Análisis de valor en riesgo
-
-13. [Análisis de valor en riesgo para Apple](#schema13)
+12. [Creamos un dataset con los porcentajes de los precios diarios.](#schema12)
+13. [Hacemos un pairplot y heatmap.](#schema13)
+14. [Análisis de valor en riesgo para Apple](#schema14)
 <hr>
 
 <a name="schema0"></a>
@@ -153,9 +163,9 @@ plt.savefig("./images/date.png")
 
 <hr>
 
-<a name="schema7"></a>
+<a name="schema8"></a>
 
-# 7. Analizar la media mensual de la columna de cierre
+# 8. Analizar la media mensual de la columna de cierre
 1º Hacemos un a copia del dataset
 ~~~python
 df2=df.copy()
@@ -189,9 +199,9 @@ df2['close'].resample('Y').mean().plot(kind = 'bar')
 
 <hr>
 
-<a name="schema8"></a>
+<a name="schema9"></a>
 
-# 8. Creamos un dataset para cada empresa que vamos a anlizar
+# 9. Creamos un dataset para cada empresa que vamos a anlizar
 ~~~python
 aapl=pd.read_csv('./data/AAPL_data.csv')
 goog=pd.read_csv('./data/GOOG_data.csv')
@@ -200,9 +210,9 @@ msft=pd.read_csv('./data/MSFT_data.csv')
 ~~~
 <hr>
 
-<a name="schema9"></a>
+<a name="schema10"></a>
 
-# 9. Creamos un dataset con las ventas finales
+# 10. Creamos un dataset con las ventas finales
 
 ~~~python
 close['aapl']=aapl['close']
@@ -216,9 +226,9 @@ close['msft']=msft['close']
 
 <hr>
 
-<a name="schema10"></a>
+<a name="schema11"></a>
 
-# 10. Hacemos un pairplot y heatmap.
+# 11. Hacemos un pairplot y heatmap.
 Para ver la distribución de los datos con varibles 
 
 ~~~python
@@ -237,9 +247,9 @@ Donde podemos observar que las ventas de `amazon` y `microsoft` esta correladas 
 
 <hr>
 
-<a name="schema11"></a>
+<a name="schema12"></a>
 
-# 11. Creamos un dataset con los porcentajes de los precios diarios.
+# 12. Creamos un dataset con los porcentajes de los precios diarios.
 ~~~python
 data['appl_change']=((aapl['close']-aapl['open'])/aapl['close'])*100
 data['goog_change']=((goog['close']-goog['open'])/goog['close'])*100
@@ -250,9 +260,9 @@ data['msft_change']=((msft['close']-msft['open'])/msft['close'])*100
 
 <hr>
 
-<a name="schema12"></a>
+<a name="schema13"></a>
 
-# 12. Hacemos un pairplot y heatmap.
+# 13. Hacemos un pairplot y heatmap.
 
 ~~~python
 sns.pairplot(data = data)
@@ -268,9 +278,9 @@ plt.savefig("./images/data_corr.png")
 
 <hr>
 
-<a name="schema13"></a>
+<a name="schema15"></a>
 
-# 13. Análisis de valor en riesgo para Apple
+# 14. Análisis de valor en riesgo para Apple
 ~~~python
 sns.distplot(data['appl_change'])
 ~~~
